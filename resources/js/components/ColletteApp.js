@@ -11,6 +11,7 @@ function RenderCards(props){
                     </h5>
                     <p className="card-text">{post.body}</p>
                     <a href="#" className="btn btn-primary">View More</a>
+                    <button className="btn btn-secondary" onClick={() => props.deletePost(post)}>削除</button>
                 </div>
             </div>
         );
@@ -27,6 +28,7 @@ export default class ColletteApp extends Component {
         };
         this.inputChange = this.inputChange.bind(this);
         this.addPost = this.addPost.bind(this);
+        this.deletePost = this.deletePost.bind(this);
     }
 
     componentDidMount(){
@@ -68,6 +70,21 @@ export default class ColletteApp extends Component {
             });
     }
 
+    deletePost(post){
+        axios
+            .post('/api/del', {
+                id: post.id
+            })
+            .then((res) => {
+                this.setState({
+                    posts: res.data
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -78,7 +95,7 @@ export default class ColletteApp extends Component {
                     <input type="text" className="form-control" name="body" value={this.state.body} onChange={this.inputChange}/>
                 </div>
                 <button className="btn btn-primary" onClick={this.addPost}>登録</button>
-                <RenderCards posts={this.state.posts} />
+                <RenderCards posts={this.state.posts} deletePost={this.deletePost}/>
             </React.Fragment>
         );
     }

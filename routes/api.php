@@ -20,4 +20,5 @@ use Illuminate\Http\Request;
 Route::group(['middleware' => 'api'], function(){
     Route::get('get', 'PostController@getPosts');
     Route::post('add', 'PostController@addPost');
+    Route::post('del', 'PostController@deletePost');
 });

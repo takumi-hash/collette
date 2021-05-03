@@ -47998,7 +47998,12 @@ function RenderCards(props) {
     }, post.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "#",
       className: "btn btn-primary"
-    }, "View More")));
+    }, "View More"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      className: "btn btn-secondary",
+      onClick: function onClick() {
+        return props.deletePost(post);
+      }
+    }, "\u524A\u9664")));
   });
 }
 
@@ -48025,6 +48030,7 @@ var ColletteApp = /*#__PURE__*/function (_Component) {
     };
     _this.inputChange = _this.inputChange.bind(_assertThisInitialized(_this));
     _this.addPost = _this.addPost.bind(_assertThisInitialized(_this));
+    _this.deletePost = _this.deletePost.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -48064,6 +48070,21 @@ var ColletteApp = /*#__PURE__*/function (_Component) {
       });
     }
   }, {
+    key: "deletePost",
+    value: function deletePost(post) {
+      var _this4 = this;
+
+      axios.post('/api/del', {
+        id: post.id
+      }).then(function (res) {
+        _this4.setState({
+          posts: res.data
+        });
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -48088,7 +48109,8 @@ var ColletteApp = /*#__PURE__*/function (_Component) {
         className: "btn btn-primary",
         onClick: this.addPost
       }, "\u767B\u9332"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(RenderCards, {
-        posts: this.state.posts
+        posts: this.state.posts,
+        deletePost: this.deletePost
       }));
     }
   }]);
