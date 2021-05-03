@@ -15,5 +15,15 @@ class PostsTableSeeder extends Seeder
         'title' => Str::random(10),
         'body' => Str::random(1000).'test body',
       ]);
+
+      DB::table('posts')->insert([
+        'title' => Str::random(10),
+        'body' => Str::random(1000).'test body',
+      ]);
+
+      DB::table('posts')->insert([
+        'title' => Str::random(10),
+        'body' => Str::random(1000).'test body',
+      ]);
     }
 }
