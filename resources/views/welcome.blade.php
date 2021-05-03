@@ -2,8 +2,9 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <title>Laravel</title>
 
         <!-- Fonts -->
@@ -64,7 +65,15 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div id="app">
+          <div class="container">
+            <h3 class="container">セクションヘッダ入る</h3>
+            <div id="colletteApp">
+              
+            </div>
+          </div>
+        </div>
+        <!-- <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -83,7 +92,6 @@
                 <div class="title m-b-md">
                     Laravel
                 </div>
-
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
@@ -95,6 +103,7 @@
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
             </div>
-        </div>
+        </div> -->
+        <script src="{{ asset('js/app.js')}}"></script>
     </body>
 </html>
