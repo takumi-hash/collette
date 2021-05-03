@@ -13,4 +13,15 @@ class PostController extends Controller
       $posts = Post::all();
       return $posts;
     }
+
+    //addPost
+    public function addPost(Request $request)
+    {
+      $post = new Post;
+      $post->title = $request->title;
+      $post->body = $request->body;
+      $post->save();
+      $posts= Post::all();
+      return $posts;
+    }
 }

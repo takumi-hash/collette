@@ -47979,6 +47979,8 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -47986,16 +47988,16 @@ function RenderCards(props) {
   return props.posts.map(function (post) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       key: post.id,
-      "class": "card"
+      className: "card"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      "class": "card-body"
+      className: "card-body"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-      "class": "card-title"
+      className: "card-title"
     }, post.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-      "class": "card-text"
+      className: "card-text"
     }, post.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "#",
-      "class": "btn btn-primary"
+      className: "btn btn-primary"
     }, "View More")));
   });
 }
@@ -48011,9 +48013,18 @@ var ColletteApp = /*#__PURE__*/function (_Component) {
     _classCallCheck(this, ColletteApp);
 
     _this = _super.call(this);
+
+    _defineProperty(_assertThisInitialized(_this), "inputChange", function (event) {
+      _this.setState(_defineProperty({}, event.target.name, event.target.value));
+    });
+
     _this.state = {
-      posts: []
+      posts: [],
+      title: '',
+      body: ''
     };
+    _this.inputChange = _this.inputChange.bind(_assertThisInitialized(_this));
+    _this.addPost = _this.addPost.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -48031,9 +48042,52 @@ var ColletteApp = /*#__PURE__*/function (_Component) {
       });
     }
   }, {
+    key: "addPost",
+    value: function addPost() {
+      var _this3 = this;
+
+      if (this.state.title == '' || this.state.body == '') {
+        console.log('either blank');
+        return;
+      }
+
+      axios.post('/api/add', {
+        title: this.state.title,
+        body: this.state.body
+      }).then(function (res) {
+        _this3.setState({
+          posts: res.data,
+          post: ''
+        });
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(RenderCards, {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group mt-4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "title"
+      }, "Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        className: "form-control",
+        name: "title",
+        value: this.state.title,
+        onChange: this.inputChange
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "title"
+      }, "Body"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        className: "form-control",
+        name: "body",
+        value: this.state.body,
+        onChange: this.inputChange
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-primary",
+        onClick: this.addPost
+      }, "\u767B\u9332"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(RenderCards, {
         posts: this.state.posts
       }));
     }
