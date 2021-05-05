@@ -25,3 +25,7 @@ Auth::routes();
 Route::get('/home', function() {
     return view('home');
 })->name('home');
+
+Route::middleware('auth')->get('/api/get', 'PostController@getPosts');
+Route::middleware('auth')->post('/api/add', 'PostController@addPost');
+Route::middleware('auth')->post('/api/del', 'PostController@deletePost');

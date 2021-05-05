@@ -34,7 +34,7 @@ export default class ColletteApp extends Component {
 
     componentDidMount(){
         axios
-            .get('/api/get/')
+            .get('/api/get')
             .then((res) => {
                 this.setState({
                     posts: res.data
@@ -96,7 +96,7 @@ export default class ColletteApp extends Component {
                     <label htmlFor="title">Body</label>
                     <input type="text" className="form-control" name="body" value={this.state.body} onChange={this.inputChange}/>
                 </div>
-                <button className="btn btn-primary" onClick={this.addPost}>投稿</button>
+                <button className="btn btn-primary" onClick={this.addPost}>登録</button>
                 <RenderCards posts={this.state.posts} deletePost={this.deletePost}/>
             </React.Fragment>
         );

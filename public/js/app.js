@@ -66060,7 +66060,7 @@ var ColletteApp = /*#__PURE__*/function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      axios.get('/api/get/').then(function (res) {
+      axios.get('/api/get').then(function (res) {
         _this2.setState({
           posts: res.data
         });
@@ -66131,7 +66131,7 @@ var ColletteApp = /*#__PURE__*/function (_Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "btn btn-primary",
         onClick: this.addPost
-      }, "\u6295\u7A3F"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(RenderCards, {
+      }, "\u767B\u9332"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(RenderCards, {
         posts: this.state.posts,
         deletePost: this.deletePost
       }));
