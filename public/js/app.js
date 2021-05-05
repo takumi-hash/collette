@@ -66014,6 +66014,8 @@ function RenderCards(props) {
       className: "card-title"
     }, post.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "card-text"
+    }, post.user.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "card-text"
     }, post.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "#",
       className: "btn btn-primary"
@@ -66062,6 +66064,8 @@ var ColletteApp = /*#__PURE__*/function (_Component) {
         _this2.setState({
           posts: res.data
         });
+
+        console.log(res.data);
       })["catch"](function (error) {
         console.log(error);
       });
@@ -66127,7 +66131,7 @@ var ColletteApp = /*#__PURE__*/function (_Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "btn btn-primary",
         onClick: this.addPost
-      }, "\u767B\u9332"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(RenderCards, {
+      }, "\u6295\u7A3F"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(RenderCards, {
         posts: this.state.posts,
         deletePost: this.deletePost
       }));

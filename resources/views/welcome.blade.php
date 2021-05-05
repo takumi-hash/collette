@@ -13,4 +13,3 @@
     </div>
 </div>
 @endsection
-<!DOCTYPE html>

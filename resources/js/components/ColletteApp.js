@@ -9,6 +9,7 @@ function RenderCards(props){
                     <h5 className="card-title">
                         {post.title}
                     </h5>
+                    <p className="card-text">{post.user.name}</p>
                     <p className="card-text">{post.body}</p>
                     <a href="#" className="btn btn-primary">View More</a>
                     <button className="btn btn-secondary" onClick={() => props.deletePost(post)}>削除</button>
@@ -38,9 +39,10 @@ export default class ColletteApp extends Component {
                 this.setState({
                     posts: res.data
                 });
+                console.log(res.data);
             })
             .catch(error => {
-                console.log(error)
+                console.log(error);
             })
     }
 
@@ -94,7 +96,7 @@ export default class ColletteApp extends Component {
                     <label htmlFor="title">Body</label>
                     <input type="text" className="form-control" name="body" value={this.state.body} onChange={this.inputChange}/>
                 </div>
-                <button className="btn btn-primary" onClick={this.addPost}>登録</button>
+                <button className="btn btn-primary" onClick={this.addPost}>投稿</button>
                 <RenderCards posts={this.state.posts} deletePost={this.deletePost}/>
             </React.Fragment>
         );

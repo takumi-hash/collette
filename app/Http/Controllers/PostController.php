@@ -10,7 +10,7 @@ class PostController extends Controller
     //getPosts
     public function getPosts()
     {
-      $posts = Post::all();
+      $posts = Post::with('user')->get();
       return $posts;
     }
 
@@ -21,7 +21,7 @@ class PostController extends Controller
       $post->title = $request->title;
       $post->body = $request->body;
       $post->save();
-      $posts= Post::all();
+      $posts= Post::with('user')->get();
       return $posts;
     }
 
@@ -30,7 +30,7 @@ class PostController extends Controller
     {
         $post = Post::find($request->id);
         $post->delete();
-        $posts = Post::all();
+        $posts = Post::with('user')->get();
         return $posts;
     }
 }
