@@ -21,10 +21,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-//Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/home', function() {
-    return view('home');
-})->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', function() {
+//     return view('home');
+// })->name('home');
 
 Route::middleware('auth')->get('/api/get', 'PostController@getPosts');
 Route::middleware('auth')->post('/api/add', 'PostController@addPost');

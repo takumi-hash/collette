@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 function RenderCards(props){
     return props.posts.map(post => {
         return(
-            <div key={post.id} className="card">
+            <div key={post.id} className="card my-3">
                 <div className="card-body">
                     <h5 className="card-title">
                         {post.title}
