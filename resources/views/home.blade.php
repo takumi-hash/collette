@@ -17,6 +17,8 @@
                     You are logged in!
                 </div>
             </div>
+            <div id="colletteApp">
+            </div>
         </div>
     </div>
 </div>

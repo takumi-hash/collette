@@ -11,19 +11,22 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
-      DB::table('posts')->insert([
-        'title' => Str::random(10),
-        'body' => Str::random(1000).'test body',
-      ]);
+        DB::table('posts')->insert([
+            'user_id' => 1,
+            'title' => Str::random(10),
+            'body' => Str::random(1000).'test body',
+        ]);
 
-      DB::table('posts')->insert([
-        'title' => Str::random(10),
-        'body' => Str::random(1000).'test body',
-      ]);
+        DB::table('posts')->insert([
+            'user_id' => 1,
+            'title' => Str::random(10),
+            'body' => Str::random(1000).'test body',
+        ]);
 
-      DB::table('posts')->insert([
-        'title' => Str::random(10),
-        'body' => Str::random(1000).'test body',
-      ]);
+        DB::table('posts')->insert([
+            'user_id' => 2,
+            'title' => Str::random(10),
+            'body' => Str::random(1000).'test body',
+        ]);
     }
 }
