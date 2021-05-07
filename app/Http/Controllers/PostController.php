@@ -3,16 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Post;
 use Illuminate\Support\Facades\Auth;
+
+use App\Post;
+use App\User;
 
 class PostController extends Controller
 {
-    //getPosts
-    public function getPosts()
+    public function getAllPosts()
     {
         $posts= Post::with('user')->orderBy('created_at', 'desc')->get();
         return $posts;
+    }
+
+    public function getFollowingPosts()
+    {
+        $posts= Auth::user()->feed_posts()->with('user')->orderBy('created_at', 'desc')->get();
+        return $posts;
+    }
+
+    public function getPost($id)
+    {
+        $post= Post::find($id);
+
+        $data = [
+            'post' => $post,
+        ];
+        return view('post.show', $data);
     }
 
     //addPost

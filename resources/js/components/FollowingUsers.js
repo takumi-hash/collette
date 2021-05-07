@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import FollowingItem from './FollowingItem'
+import FollowingUser from './FollowingUser'
 
-export default class FollowingList extends Component{
+export default class FollowingUsers extends Component{
     constructor(){
         super();
         this.state = {
@@ -32,7 +32,7 @@ export default class FollowingList extends Component{
     render() {
         return this.state.followings.map(following => {
             return(
-                <FollowingItem key={following.id} following={following}/>
+                <FollowingUser key={following.id} following={following}/>
             );
         });
     }
