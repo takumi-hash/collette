@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import FollowingList from './FollowingList'
 
 function RenderCards(props){
     return props.posts.map(post => {
         return(
             <div key={post.id} className="card my-3">
                 <div className="card-body">
-                    <h5 className="card-title">
-                        {post.title}
-                    </h5>
+                    <h5 className="card-title">{post.title}</h5>
                     <p className="card-text">{post.user.name}</p>
                     <p className="card-text">{post.body}</p>
                     <a href="#" className="btn btn-primary">View More</a>
@@ -27,27 +26,33 @@ export default class ColletteApp extends Component {
             title: '',
             body: ''
         };
+
         this.inputChange = this.inputChange.bind(this);
+
+        this.getPosts = this.getPosts.bind(this);
         this.addPost = this.addPost.bind(this);
         this.deletePost = this.deletePost.bind(this);
     }
 
     componentDidMount(){
+        this.getPosts();
+    }
+
+    inputChange = (event) => {
+        this.setState({[event.target.name]: event.target.value})
+    }
+
+    getPosts(){
         axios
             .get('/api/get')
             .then((res) => {
                 this.setState({
                     posts: res.data
                 });
-                console.log(res.data);
             })
             .catch(error => {
                 console.log(error);
-            })
-    }
-
-    inputChange = (event) => {
-        this.setState({[event.target.name]: event.target.value})
+            });
     }
 
     addPost(){
@@ -74,7 +79,7 @@ export default class ColletteApp extends Component {
 
     deletePost(post){
         axios
-            .post('/api/del', {
+            .post('/api/delete', {
                 id: post.id
             })
             .then((res) => {
@@ -96,11 +101,12 @@ export default class ColletteApp extends Component {
                     <label htmlFor="title">Body</label>
                     <input type="text" className="form-control" name="body" value={this.state.body} onChange={this.inputChange}/>
                 </div>
-                <button className="btn btn-primary" onClick={this.addPost}>登録</button>
+                <button className="btn btn-primary" onClick={this.addPost}>投稿</button>
                 <RenderCards posts={this.state.posts} deletePost={this.deletePost}/>
+                <FollowingList/>
             </React.Fragment>
         );
     }
-}
+};
 
 ReactDOM.render(<ColletteApp />, document.getElementById('colletteApp'));
