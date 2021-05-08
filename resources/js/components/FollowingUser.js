@@ -47,10 +47,11 @@ export default class FollowingUser extends Component{
             <div className="card my-3">
                 <div className="card-body">
                     <h5 className="card-title">
-                        {this.props.following.name}
+                        <a href={'/users/' + this.props.following.id}>
+                            {this.props.following.name}
+                        </a>
                     </h5>
-                    <p className="card-text">Following this person.</p>
-                    <a href="#" className="btn btn-primary">View More</a>
+                    <p className="card-text">{this.props.following.bio}</p>
                     <button className="btn btn-secondary" onClick={this.toggleFollow}>{this.state.isFollowing ? 'Following' : 'Not Following'}</button>
                 </div>
             </div>

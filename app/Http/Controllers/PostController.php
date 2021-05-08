@@ -12,21 +12,23 @@ class PostController extends Controller
 {
     public function getAllPosts()
     {
-        $posts= Post::with('user')->orderBy('created_at', 'desc')->get();
+        $posts = Post::with('user')->orderBy('created_at', 'desc')->get();
         return $posts;
     }
 
     public function getFollowingPosts()
     {
-        $posts= Auth::user()->feed_posts()->with('user')->orderBy('created_at', 'desc')->get();
+        $posts = Auth::user()->feed_posts()->with('user')->orderBy('created_at', 'desc')->get();
         return $posts;
     }
 
     public function getPost($id)
     {
-        $post= Post::find($id);
+        $post = Post::find($id);
+        $user = User::find($post->user_id);
 
         $data = [
+            'user' => $user,
             'post' => $post,
         ];
         return view('post.show', $data);
@@ -49,7 +51,8 @@ class PostController extends Controller
     {
         $post = Post::find($request->id);
         $post->delete();
-        $posts= Post::with('user')->orderBy('created_at', 'desc')->get();
-        return $posts;
+        //$posts= Post::with('user')->orderBy('created_at', 'desc')->get();
+        //return $posts;
+        return redirect()->back();
     }
 }

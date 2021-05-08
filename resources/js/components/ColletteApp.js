@@ -52,22 +52,21 @@ export default class ColletteApp extends Component {
             <React.Fragment>
                 <div className="row justify-content-center">
                     <div className="col-sm-4">
+                        <h3>フォローしている読書家</h3>
                         <FollowingUsers/>
+                        <h3>フォローしている読書家の投稿</h3>
                         <FollowingPosts/>
                     </div>
                     <div className="col-sm-8">
-                        <div className="row">
-                            <div className="col-sm-12">
-                                <div className="form-group">
-                                    <label htmlFor="title">Title</label>
-                                    <input type="text" className="form-control" name="title" value={this.state.title} onChange={this.inputChange}/>
-                                    <label htmlFor="title">Body</label>
-                                    <input type="text" className="form-control" name="body" value={this.state.body} onChange={this.inputChange}/>
-                                </div>
-                                <button className="btn btn-primary" onClick={this.addPost}>投稿</button>
-                                <LatestPosts/>
-                            </div>
+                        <div className="form-group">
+                            <label htmlFor="title">Title</label>
+                            <input type="text" className="form-control" name="title" value={this.state.title} onChange={this.inputChange}/>
+                            <label htmlFor="title">Body</label>
+                            <input type="text" className="form-control" name="body" value={this.state.body} onChange={this.inputChange}/>
                         </div>
+                        <button className="btn btn-primary" onClick={this.addPost}>投稿</button>
+                        <h2>最新の投稿</h2>
+                        <LatestPosts/>
                     </div>
                 </div>
             </React.Fragment>

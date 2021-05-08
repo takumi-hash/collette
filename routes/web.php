@@ -28,14 +28,20 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
-    Route::group(['prefix' => 'users/{id}'], function () {
+    Route::group(['prefix' => '/users/{id}'], function () {
+        Route::get('', 'UsersController@show')->name('users.show');
         Route::get('followings', 'UsersController@followings')->name('users.followings');
         Route::get('followers', 'UsersController@followers')->name('users.followers');
     });
 
+    Route::group(['prefix' => '/posts/{id}'], function () {
+        Route::get('', 'PostController@getPost')->name('post.show');
+        Route::post('delete', 'PostController@deletePost')->name('post.delete');
+    });
+
+
     Route::get('/api/post/all', 'PostController@getAllPosts');
     Route::get('/api/post/following', 'PostController@getFollowingPosts');
-    Route::get('/posts/{id}', 'PostController@getPost')->name('post.show');
     Route::post('/api/post/add', 'PostController@addPost');
     Route::post('/api/post/delete', 'PostController@deletePost');
     Route::get('/api/myfollowings', 'UserFollowController@myFollowings');
